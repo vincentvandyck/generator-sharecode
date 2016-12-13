@@ -44,23 +44,23 @@ gulp.task('scripts',function(){
 });
 
 
-gulp.task('upload', function(){
+gulp.task('upload', ['scripts', 'styles'], function(){
     return gulp.src(["dist/*.*"])
         .pipe(spsave(settings.coreOptions,settings.credentials))
 });
 
-gulp.task('upload-scripts', function(){
+gulp.task('upload-scripts', ['scripts'], function(){
     return gulp.src(["dist/*.js"])
         .pipe(spsave(settings.coreOptions,settings.credentials))
 });
 
-gulp.task('upload-styles', function(){
+gulp.task('upload-styles', ['styles'], function(){
     return gulp.src(["dist/*.css"])
         .pipe(spsave(settings.coreOptions,settings.credentials))
 });
 gulp.task('watch', function(){
-    gulp.watch(path.src.scripts, ['scripts', 'upload-scripts']);
-    gulp.watch(path.src.styles, ['styles', 'upload-styles'] );
+    gulp.watch(path.src.scripts, ['upload-scripts']);
+    gulp.watch(path.src.styles, ['upload-styles'] );
 })
 
-gulp.task('default',['styles','scripts','upload', 'watch']);
+gulp.task('default',['upload', 'watch']);
