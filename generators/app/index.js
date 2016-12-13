@@ -30,7 +30,7 @@ module.exports = yeoman.Base.extend({
       {
         type: 'input',
         name: 'folder',
-        message: 'The full URL of the library you want to upload the files to.',
+        message: 'The library/folder you want to upload your files to (e.g. SiteAssets/folder)',
       },
       {
         type: 'input',
@@ -42,10 +42,9 @@ module.exports = yeoman.Base.extend({
         name: 'password',
         message: 'Your SharePoint password.',
       }
-      ];
+    ];
 
     return this.prompt(prompts).then(function (props) {
-      // To access props later use this.props.someAnswer;
       this.props = props;
       done();
     }.bind(this));
