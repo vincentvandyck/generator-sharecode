@@ -4,7 +4,8 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var notify = require('gulp-notify');
 var del = require('del');
-var rename = require('gulp-rename')
+var rename = require('gulp-rename');
+var spsave = require('gulp-spsave');
 
 var path = {
     src:{
@@ -13,7 +14,8 @@ var path = {
     },
     dist:{
         scripts:'./dist',
-        styles:'./dist'
+        styles:'./dist',
+        upload:'.dist/*'
     }
 };
 
@@ -37,3 +39,8 @@ gulp.task('scripts',function(){
         .pipe(gulp.dest(path.dist.scripts))
         .pipe(notify({message:"Scripts completed"}));
 });
+
+gulp.task('upload', function(){
+    return gulp.src(path.dist.upload)
+        .pipe(spsave(coreOptions, creds));
+})

@@ -38,10 +38,6 @@ module.exports = yeoman.Base.extend({
       // To access props later use this.props.someAnswer;
       this.props = props;
       done();
-      console.log(this.props.project);
-      console.log(this.props.url);
-      console.log(this.props.username);
-      console.log(this.props.password);
     }.bind(this));
   },
 
@@ -57,6 +53,19 @@ module.exports = yeoman.Base.extend({
     this.fs.copy(
       this.templatePath('gulpfile.js'),
       this.destinationPath('gulpfile.js')
+    );
+    this.fs.copy(
+      this.templatePath('README.md'),
+      this.destinationPath('README.md')
+    );
+    this.fs.copyTpl(
+      this.templatePath('settings.js'),
+      this.destinationPath('settings.js'),
+      {
+        username:this.props.username,
+        password:this.props.password,
+        url:this.props.url
+      }
     )
     //Copy src files
     this.fs.copy(

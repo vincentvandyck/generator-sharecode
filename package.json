@@ -1,7 +1,7 @@
 {
   "name": "generator-sharecode",
   "version": "0.0.0",
-  "description": "Project to manage files that need to be uploaded and tested in SharePoint",
+  "description": "Generator to manage files that need to be uploaded and tested in SharePoint",
   "homepage": "",
   "author": {
     "name": "vincentvandyck",
