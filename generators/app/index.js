@@ -19,6 +19,11 @@ module.exports = yeoman.Base.extend({
       },
       {
         type: 'input',
+        name: 'description',
+        message: 'Project description',
+      },
+      {
+        type: 'input',
         name: 'url',
         message: 'The full URL of the library you want to upload the files to.',
       },

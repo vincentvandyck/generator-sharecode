@@ -1,7 +1,7 @@
 {
     "name": "<%= project %>",
     "version": "1.0.0",
-    "description": "Working with SharePoint libraries to maintain and use custom code.",
+    "description": "<%= description %>",
 
     "scripts": {
         "start": "node server.js"
