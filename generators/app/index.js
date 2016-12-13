@@ -14,23 +14,23 @@ module.exports = yeoman.Base.extend({
     var prompts = [
       {
         type: 'input',
-        name: 'Project Name',
+        name: 'project',
         message: 'The name of the project you are working on.',
       },
       {
         type: 'input',
-        name: 'SharePoint library URL',
+        name: 'url',
         message: 'The full URL of the library you want to upload the files to.',
       },
       {
         type: 'input',
-        name: 'SharePoint Username',
+        name: 'username',
         message: 'Your SharePoint username.'
       },
       {
         type: 'password',
-        name: 'SharePoint Password',
-        message: 'Your SharePoint password. (it will not be displayed)',
+        name: 'password',
+        message: 'Your SharePoint password.',
       }
       ];
 
@@ -38,17 +38,21 @@ module.exports = yeoman.Base.extend({
       // To access props later use this.props.someAnswer;
       this.props = props;
       done();
+      console.log(this.props.project);
+      console.log(this.props.url);
+      console.log(this.props.username);
+      console.log(this.props.password);
     }.bind(this));
   },
 
   writing: function () {
-    this.fs.copy(
-      this.templatePath('dummyfile.txt'),
-      this.destinationPath('dummyfile.txt')
-    );
+    // this.fs.copy(
+    //   this.templatePath('dummyfile.txt'),
+    //   this.destinationPath('dummyfile.txt')
+    // );
   },
 
   install: function () {
-    this.installDependencies();
+    // this.installDependencies();
   }
 });
