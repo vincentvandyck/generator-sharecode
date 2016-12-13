@@ -46,10 +46,19 @@ module.exports = yeoman.Base.extend({
   },
 
   writing: function () {
-    // this.fs.copy(
-    //   this.templatePath('dummyfile.txt'),
-    //   this.destinationPath('dummyfile.txt')
-    // );
+    //Copy configuration files
+    this.fs.copyTpl(
+      this.templatePath('package.json'),
+      this.destinationPath('package.json'),
+      {
+        project:this.props.project
+      }
+
+    );
+    this.fs.copy(
+      this.templatePath('src'),
+      this.destinationPath('src')
+    );
   },
 
   install: function () {
