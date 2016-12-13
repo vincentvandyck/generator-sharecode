@@ -53,15 +53,19 @@ module.exports = yeoman.Base.extend({
       {
         project:this.props.project
       }
-
     );
+    this.fs.copy(
+      this.templatePath('gulpfile.js'),
+      this.destinationPath('gulpfile.js')
+    )
+    //Copy src files
     this.fs.copy(
       this.templatePath('src'),
       this.destinationPath('src')
     );
   },
-
+  //Install dependencies
   install: function () {
-    // this.installDependencies();
+    this.installDependencies();
   }
 });
