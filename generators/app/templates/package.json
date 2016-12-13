@@ -2,12 +2,10 @@
     "name": "<%= project %>",
     "version": "1.0.0",
     "description": "<%= description %>",
-
     "scripts": {
         "start": "node server.js"
     },
-    "dependencies": {
-        
+    "dependencies": {        
     },
     "devDependencies": {
         "gulp": "^3.9.1",

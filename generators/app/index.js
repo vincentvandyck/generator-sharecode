@@ -25,6 +25,11 @@ module.exports = yeoman.Base.extend({
       {
         type: 'input',
         name: 'url',
+        message: 'The URL of the SharePoint site.',
+      },
+      {
+        type: 'input',
+        name: 'folder',
         message: 'The full URL of the library you want to upload the files to.',
       },
       {
@@ -52,7 +57,8 @@ module.exports = yeoman.Base.extend({
       this.templatePath('package.json'),
       this.destinationPath('package.json'),
       {
-        project:this.props.project
+        project:this.props.project,
+        description:this.props.description
       }
     );
     this.fs.copy(
@@ -69,7 +75,8 @@ module.exports = yeoman.Base.extend({
       {
         username:this.props.username,
         password:this.props.password,
-        url:this.props.url
+        url:this.props.url,
+        folder:this.props.folder,
       }
     )
     //Copy src files

@@ -1,5 +1,13 @@
-module.exports={
-    "username":"<%= username %>",
-    "password":"<%= password %>",
-    "url":"<%= url %>"
+module.exports = {
+    coreOptions: {
+        siteUrl: "<%= url %>",
+        folder: "<%= folder %>",
+        notification:true,
+        checkin:true,
+        checkinType:2
+    },
+    credentials: {
+        username: "<%= username %>",
+        password: "<%= password %>"
+    }
 };
