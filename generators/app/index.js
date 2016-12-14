@@ -6,7 +6,7 @@ var yosay = require('yosay');
 module.exports = yeoman.Base.extend({
   prompting: function () {
     // Have Yeoman greet the user.
-    var done = this.async()
+    var done = this.async();
     this.log(yosay(
       'Welcome to the ' + chalk.red('ShareCode Generator') + '!'
     ));
@@ -15,22 +15,22 @@ module.exports = yeoman.Base.extend({
       {
         type: 'input',
         name: 'project',
-        message: 'The name of the project you are working on.',
+        message: 'The name of the project you are working on.'
       },
       {
         type: 'input',
         name: 'description',
-        message: 'Project description',
+        message: 'Project description'
       },
       {
         type: 'input',
         name: 'url',
-        message: 'The URL of the SharePoint site.',
+        message: 'The URL of the SharePoint site.'
       },
       {
         type: 'input',
         name: 'folder',
-        message: 'The library/folder you want to upload your files to (e.g. SiteAssets/folder)',
+        message: 'The library/folder you want to upload your files to (e.g. SiteAssets/folder)'
       },
       {
         type: 'input',
@@ -40,7 +40,7 @@ module.exports = yeoman.Base.extend({
       {
         type: 'password',
         name: 'password',
-        message: 'Your SharePoint password.',
+        message: 'Your SharePoint password.'
       }
     ];
 
@@ -51,13 +51,13 @@ module.exports = yeoman.Base.extend({
   },
 
   writing: function () {
-    //Copy configuration files
+    // Copy configuration files
     this.fs.copyTpl(
       this.templatePath('package.json'),
       this.destinationPath('package.json'),
       {
-        project:this.props.project,
-        description:this.props.description
+        project: this.props.project,
+        description: this.props.description
       }
     );
     this.fs.copy(
@@ -72,19 +72,19 @@ module.exports = yeoman.Base.extend({
       this.templatePath('settings.js'),
       this.destinationPath('settings.js'),
       {
-        username:this.props.username,
-        password:this.props.password,
-        url:this.props.url,
-        folder:this.props.folder,
+        username: this.props.username,
+        password: this.props.password,
+        url: this.props.url,
+        folder: this.props.folder
       }
-    )
-    //Copy src files
+    );
+    // Copy src files
     this.fs.copy(
       this.templatePath('src'),
       this.destinationPath('src')
     );
   },
-  //Install dependencies
+  // Install dependencies
   install: function () {
     this.installDependencies();
   }
