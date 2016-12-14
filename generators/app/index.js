@@ -46,6 +46,7 @@ module.exports = yeoman.Base.extend({
 
     return this.prompt(prompts).then(function (props) {
       this.props = props;
+      this.props.project=this.props.project.toLowerCase();
       done();
     }.bind(this));
   },
@@ -57,7 +58,8 @@ module.exports = yeoman.Base.extend({
       this.destinationPath('package.json'),
       {
         project: this.props.project,
-        description: this.props.description
+        description: this.props.description,
+        username: this.props.username
       }
     );
     this.fs.copy(
@@ -87,6 +89,6 @@ module.exports = yeoman.Base.extend({
   },
   // Install dependencies
   install: function () {
-    this.installDependencies();
+    this.npmInstall();
   }
 });

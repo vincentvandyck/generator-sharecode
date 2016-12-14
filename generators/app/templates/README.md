@@ -3,6 +3,7 @@
 A yeoman generator to create a project that allows you to work on js and css files locally and immediately upload them to a SharePoint library for testing and developping the solution.
 ##Usage
 ###Installation
+make sure you have node and npm installed on your system, you can use ´node -v´ & ´npm -v´ to check the installation.
 > ´npm i -g gulp yo´
 install gulp and yeoman globally
 > ´yo sharecode´
