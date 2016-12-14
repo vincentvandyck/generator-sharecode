@@ -1,7 +1,7 @@
 module.exports = {
     coreOptions: {
         siteUrl: '<%= url %>',
-        folder: '<%= folder %>',
+        folder: '<%= folder %>/<%= project %>',
         notification: true,
         checkin: true,
         checkinType: 2

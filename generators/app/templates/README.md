@@ -24,6 +24,3 @@ Clear the content of the dist folder
 watch dist/css & dist/js for changes and on a change, the appropriate build and upload task will run
 > ´gulp (default)´
 execute the upload task and start the watch task
-##ToDo
-- git integration
-- different enviroments (dev, test, prod)

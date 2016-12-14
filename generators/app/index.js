@@ -75,7 +75,8 @@ module.exports = yeoman.Base.extend({
         username: this.props.username,
         password: this.props.password,
         url: this.props.url,
-        folder: this.props.folder
+        folder: this.props.folder,
+        project: this.props.project
       }
     );
     // Copy src files
