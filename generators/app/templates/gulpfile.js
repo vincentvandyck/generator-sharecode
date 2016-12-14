@@ -5,6 +5,7 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var notify = require('gulp-notify');
 var eslint = require('gulp-eslint');
+var csslint = require('gulp-csslint');
 var del = require('del');
 var rename = require('gulp-rename');
 var spsave = require('gulp-spsave');
@@ -66,10 +67,18 @@ gulp.task('watch', function () {
     gulp.watch(path.src.styles, ['upload-styles']);
 });
 
-gulp.task('test', function () {
+gulp.task('test-scripts', function () {
     return gulp.src(path.src.scripts)
         .pipe(eslint())
         .pipe(eslint.format());
-})
+});
+
+gulp.task('test-styles', function () {
+    return gulp.src(path.src.scripts)
+        .pipe(csslint())
+        .pipe(csslint.formatter());
+});
+
+gulp.task('test', ['test-scripts', 'test-styles']);
 
 gulp.task('default', ['upload', 'watch']);
