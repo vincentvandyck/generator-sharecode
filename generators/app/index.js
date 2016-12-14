@@ -25,22 +25,50 @@ module.exports = yeoman.Base.extend({
       {
         type: 'input',
         name: 'url',
-        message: 'The URL of the SharePoint site.'
+        message: 'The URL of the SharePoint site.',
+        validate: function (answer) {
+          if(answer.length<1){
+            return 'the URL should not be empty.'
+          }else{
+            return true;
+          }
+        }
       },
       {
         type: 'input',
         name: 'folder',
-        message: 'The library/folder you want to upload your files to (e.g. SiteAssets/folder)'
+        message: 'The library you want to upload your files to (e.g. SiteAssets)',
+        validate: function (answer) {
+          if(answer.length<1){
+            return 'the library should not be empty.'
+          }else{
+            return true;
+          }
+        }
       },
       {
         type: 'input',
         name: 'username',
-        message: 'Your SharePoint username.'
+        message: 'Your SharePoint username.',
+        validate: function (answer) {
+          if(answer.length<1){
+            return 'your username should not be empty.'
+          }else{
+            return true;
+          }
+        }
       },
       {
         type: 'password',
         name: 'password',
-        message: 'Your SharePoint password.'
+        message: 'Your SharePoint password.',
+        validate: function (answer) {
+          if(answer.length<1){
+            return 'your password should not be empty.'
+          }else{
+            return true;
+          }
+        }
       }
     ];
 
