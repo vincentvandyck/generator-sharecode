@@ -67,18 +67,14 @@ gulp.task('watch', function () {
     gulp.watch(path.src.styles, ['upload-styles']);
 });
 
-gulp.task('test-scripts', function () {
+gulp.task('lint-scripts', function () {
     return gulp.src(path.src.scripts)
-        .pipe(eslint())
+        .pipe(eslint({
+            "extends": "standard"
+        }))
         .pipe(eslint.format());
 });
 
-gulp.task('test-styles', function () {
-    return gulp.src(path.src.scripts)
-        .pipe(csslint())
-        .pipe(csslint.formatter());
-});
-
-gulp.task('test', ['test-scripts', 'test-styles']);
+gulp.task('test', ['lint-scripts']);
 
 gulp.task('default', ['upload', 'watch']);
