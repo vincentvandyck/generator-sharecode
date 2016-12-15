@@ -47,24 +47,39 @@ gulp.task('scripts', function () {
 });
 
 
-gulp.task('upload', ['scripts', 'styles'], function () {
+gulp.task('upload-dist', ['scripts', 'styles'], function () {
     return gulp.src(['dist/*.*'])
-        .pipe(spsave(settings.coreOptions, settings.credentials));
+        .pipe(spsave(settings.coreOptionsDist, settings.credentials));
 });
 
-gulp.task('upload-scripts', ['scripts'], function () {
+gulp.task('upload-scripts-dist', ['scripts'], function () {
     return gulp.src(['dist/*.js'])
-        .pipe(spsave(settings.coreOptions, settings.credentials));
+        .pipe(spsave(settings.coreOptionsDist, settings.credentials));
 });
 
-gulp.task('upload-styles', ['styles'], function () {
+gulp.task('upload-styles-dist', ['styles'], function () {
     return gulp.src(['dist/*.css'])
-        .pipe(spsave(settings.coreOptions, settings.credentials));
+        .pipe(spsave(settings.coreOptionsDist, settings.credentials));
 });
 
-gulp.task('watch', function () {
-    gulp.watch(path.src.scripts, ['upload-scripts']);
-    gulp.watch(path.src.styles, ['upload-styles']);
+gulp.task('upload-dev', ['scripts', 'styles'], function () {
+    return gulp.src(['src/**/*.*'])
+        .pipe(spsave(settings.coreOptionsDev, settings.credentials));
+});
+
+gulp.task('upload-scripts-dev', ['scripts'], function () {
+    return gulp.src(['src/js/**/*.js'])
+        .pipe(spsave(settings.coreOptionsDev, settings.credentials));
+});
+
+gulp.task('upload-styles-dev', ['styles'], function () {
+    return gulp.src(['src/css/**/*.css'])
+        .pipe(spsave(settings.coreOptionsDev, settings.credentials));
+});
+
+gulp.task('watch-dev', function () {
+    gulp.watch(path.src.scripts, ['upload-scripts-dev']);
+    gulp.watch(path.src.styles, ['upload-styles-dev']);
 });
 
 gulp.task('lint-scripts', function () {
@@ -77,4 +92,6 @@ gulp.task('lint-scripts', function () {
 
 gulp.task('test', ['lint-scripts']);
 
-gulp.task('default', ['upload', 'watch']);
+gulp.task('default', ['upload-dev', 'watch']);
+
+gulp.task('build', ['lint-scripts', 'upload-dist'])
