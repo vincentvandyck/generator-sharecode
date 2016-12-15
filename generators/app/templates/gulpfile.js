@@ -85,13 +85,26 @@ gulp.task('watch-dev', function () {
 gulp.task('lint-scripts', function () {
     return gulp.src(path.src.scripts)
         .pipe(eslint({
-            "extends": "standard"
+            "rules": {
+                "quotes": [1, "double"],
+                "no-console": 2,
+                "no-alert": 2,
+                "curly": 1,
+                "eqeqeq": 2,
+                "no-empty-function": 1,
+                "no-self-compare": 1,
+                "array-bracket-spacing": 1,
+                "camelcase": 1,
+                "comma-dangle": 1
+            },
+            "env":["browser"]
         }))
-        .pipe(eslint.format());
+        .pipe(eslint.format('table'))
+        .pipe(eslint.failAfterError());
 });
 
 gulp.task('test', ['lint-scripts']);
 
-gulp.task('default', ['upload-dev', 'watch']);
+gulp.task('default', ['upload-dev', 'watch-dev']);
 
 gulp.task('build', ['lint-scripts', 'upload-dist'])
