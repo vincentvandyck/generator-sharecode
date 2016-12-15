@@ -1,7 +1,7 @@
 {
   "name": "generator-sharecode",
-  "version": "0.0.0",
-  "description": "Generator to manage files that need to be uploaded and tested in SharePoint",
+  "version": "0.0.1",
+  "description": "Generator to manage code files that need to be uploaded and used in SharePoint",
   "homepage": "",
   "author": {
     "name": "vincentvandyck",
@@ -13,7 +13,7 @@
   ],
   "main": "generators/index.js",
   "keywords": [
-    "",
+    "SharePoint",
     "yeoman-generator"
   ],
   "dependencies": {
