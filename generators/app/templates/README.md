@@ -33,3 +33,18 @@ execute the style task and upload all dist/*.css files to SharePoint
 execute the script task and upload all dist/*.js files to SharPoint
 > ´gulp upload-dist
 execute both the script and style task and upload all files in the dist/ folder to SharePoint
+
+scipts ['./src/js/**/*.js'] -> './dist'
+styles ['./src/css/**/*.css'] -> './dist'
+upload-scipts-dev ['src/js/**/*.js'] ->
+upload-styles-dev ['src/css/**/*.css'] ->
+upload-dev
+serve-dev ['./src/js/**/*.js'] ['./src/css/**/*.css']
+upload-scripts-dist ['dist/**/*.js']
+upload styles-dist ['dist/**/*.css']
+upload-dist
+lint-scripts ['./src/js/**/*.js']
+test
+clean 'dist/*'
+default
+build

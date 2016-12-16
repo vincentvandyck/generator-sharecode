@@ -38,6 +38,7 @@ module.exports = yeoman.Base.extend({
         type: 'input',
         name: 'folder',
         message: 'The library you want to upload your files to (e.g. SiteAssets)',
+        default: 'SiteAssets',
         validate: function (answer) {
           if(answer.length<1){
             return 'the library should not be empty.'

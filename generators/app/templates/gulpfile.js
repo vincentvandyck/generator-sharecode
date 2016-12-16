@@ -17,70 +17,59 @@ var path = {
     src: {
         scripts: ['./src/js/**/*.js'],
         styles: ['./src/css/**/*.css'],
-        upload: ['dist/*.*']
     },
     dist: {
-        scripts: './dist',
-        styles: './dist'
+        local: 'dist/',
+        scripts: 'dist/**/*.js',
+        styles: 'dist/**/*.css'
     }
 };
-
-gulp.task('clean', function () {
-    return del('dist/*');
-});
-
-gulp.task('styles', function () {
-    return gulp.src(path.src.styles)
-        .pipe(cssnano())
-        .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest(path.dist.styles))
-        .pipe(notify({message: 'Styles completed'}));
-});
 
 gulp.task('scripts', function () {
     return gulp.src(path.src.scripts)
         .pipe(concat('scripts.js'))
         .pipe(uglify())
         .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest(path.dist.scripts))
+        .pipe(gulp.dest(path.dist.local))
         .pipe(notify({message: 'Scripts completed'}));
 });
 
-
-gulp.task('upload-dist', ['scripts', 'styles'], function () {
-    return gulp.src(['dist/*.*'])
-        .pipe(spsave(settings.coreOptionsDist, settings.credentials));
-});
-
-gulp.task('upload-scripts-dist', ['scripts'], function () {
-    return gulp.src(['dist/*.js'])
-        .pipe(spsave(settings.coreOptionsDist, settings.credentials));
-});
-
-gulp.task('upload-styles-dist', ['styles'], function () {
-    return gulp.src(['dist/*.css'])
-        .pipe(spsave(settings.coreOptionsDist, settings.credentials));
-});
-
-gulp.task('upload-dev', ['scripts', 'styles'], function () {
-    return gulp.src(['src/**/*.*'])
-        .pipe(spsave(settings.coreOptionsDev, settings.credentials));
+gulp.task('styles', function () {
+    return gulp.src(path.src.styles)
+        .pipe(cssnano())
+        .pipe(rename({suffix: '.min'}))
+        .pipe(gulp.dest(path.dist.local))
+        .pipe(notify({message: 'Styles completed'}));
 });
 
 gulp.task('upload-scripts-dev', ['scripts'], function () {
-    return gulp.src(['src/js/**/*.js'])
+    return gulp.src(path.src.scripts)
         .pipe(spsave(settings.coreOptionsDev, settings.credentials));
 });
 
 gulp.task('upload-styles-dev', ['styles'], function () {
-    return gulp.src(['src/css/**/*.css'])
+    return gulp.src(path.src.styles)
         .pipe(spsave(settings.coreOptionsDev, settings.credentials));
 });
 
-gulp.task('watch-dev', function () {
+gulp.task('upload-dev', ['upload-scripts-dev', 'upload-styles-dev']);
+
+gulp.task('serve-dev', ['upload-dev'], function () {
     gulp.watch(path.src.scripts, ['upload-scripts-dev']);
     gulp.watch(path.src.styles, ['upload-styles-dev']);
 });
+
+gulp.task('upload-scripts-dist', ['scripts'], function () {
+    return gulp.src(path.dist.scripts)
+        .pipe(spsave(settings.coreOptionsDist, settings.credentials));
+});
+
+gulp.task('upload-styles-dist', ['styles'], function () {
+    return gulp.src(path.dist.styles)
+        .pipe(spsave(settings.coreOptionsDist, settings.credentials));
+});
+
+gulp.task('upload-dist', ['upload-scripts-dist', 'upload-styles-dist']);
 
 gulp.task('lint-scripts', function () {
     return gulp.src(path.src.scripts)
@@ -105,6 +94,10 @@ gulp.task('lint-scripts', function () {
 
 gulp.task('test', ['lint-scripts']);
 
-gulp.task('default', ['upload-dev', 'watch-dev']);
+gulp.task('clean', function () {
+    return del(path.dist.local);
+});
 
-gulp.task('build', ['lint-scripts', 'upload-dist'])
+gulp.task('default', ['serve-dev']);
+
+gulp.task('build', ['test', 'upload-dist'])
