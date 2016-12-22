@@ -1,4 +1,5 @@
 # generator-sharecode [![NPM version][npm-image]][npm-url]
+
 > Project to manage files that need to be uploaded and tested in SharePoint
 
 ## Installation
@@ -18,7 +19,7 @@ yo sharecode
 
 ## Documentation
 
-See the [README.md] (README.md) in the generator folder
+See the [README.md] (../blob/master/LICENSE) in the generator folder
 
 ## License
 
