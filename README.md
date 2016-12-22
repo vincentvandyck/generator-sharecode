@@ -19,7 +19,7 @@ yo sharecode
 
 ## Documentation
 
-See the [README.md] (../blob/master/LICENSE) in the generator folder
+See the [README.md] (generators/app/templates/README.md) in the generator folder
 
 ## License
 
