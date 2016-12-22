@@ -100,4 +100,12 @@ gulp.task('clean', function () {
 
 gulp.task('default', ['serve-dev']);
 
-gulp.task('build', ['test', 'upload-dist'])
+gulp.task('build', ['test', 'upload-dist']);
+
+gulp.task('notify', () => {
+    notifier.notify({
+        'title': 'Files uploaded',
+        'message': 'You can see them in the library now',
+        'icon': __dirname + '/sp.png'
+    });
+})
