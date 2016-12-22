@@ -18,7 +18,7 @@ yo sharecode
 
 ## Documentation
 
-See the [README.md] (generator/app/README.md) in the generator folder
+See the [README.md] (;/generator/app/README.md) in the generator folder
 
 ## License
 
